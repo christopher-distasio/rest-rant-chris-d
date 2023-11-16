@@ -12,13 +12,17 @@ router.get("/", (req, res) => {
     cuisines: 'Thai, Pan-Asian',
     pic: '/images/h-thai-ml-tables.png'
   }, {
-      name: 'Coding Cat Cafe',
-      city: 'Phoenix',
-      state: 'AZ',
-      cuisines: 'Coffee, Bakery',
-      pic: '/images/coffee-cat.jpg'
+    name: 'Coding Cat Cafe',
+    city: 'Phoenix',
+    state: 'AZ',
+    cuisines: 'Coffee, Bakery',
+    pic: '/images/coffee-cat.jpg'
   }]
-  
+
+  router.post('/', (req, res) => {
+    console.log(req.body)
+    res.send('POST /places')
+  })
 
   res.render("places/index", { places });
 });
