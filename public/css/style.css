@@ -9,6 +9,11 @@ main {
   background-color: white;
 }
 
+img {
+  width: 30%;
+  height: 30%;
+}
+
 nav {
   background-color: cornflowerblue;
   padding: 10px;
