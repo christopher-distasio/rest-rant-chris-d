@@ -9,11 +9,6 @@ main {
   background-color: white;
 }
 
-img {
-  width: 30%;
-  height: 30%;
-}
-
 nav {
   background-color: cornflowerblue;
   padding: 10px;
@@ -44,4 +39,39 @@ h1 {
   color: cornflowerblue;
 }
 
+/* Custom Image Sizes */
 
+#home-image,
+#show-image {
+  width: 65%;
+  height: 45%;
+}
+
+.places-image {
+  width: 60%;
+  height: 50%;
+}
+
+/* Button Styles */
+
+/* Center the buttons horizontally in the row */
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style the Edit button */
+.edit-button {
+  margin-right: 10px;
+  background-color: navy;
+  color: white;
+  padding: 15px 25px;
+  text-decoration: none;
+}
+
+/* Style the Delete button */
+.delete-button {
+  background-color: navy;
+  font: white;
+}
