@@ -29,13 +29,13 @@ function show(data) {
         <br/><br/>
         <div className="row">
           <a className="col-sm-1 edit-button"
-            href={`/places/${data.id}/edit`}
+            href={`/places/${data.place.id}/edit`}
           >
             Edit
           </a>
           <form
             method="POST"
-            action={`/places/${data.id}?_method=DELETE`}
+            action={`/places/${data.place.id}?_method=DELETE`}
             className="col-sm-1 delete-form"
           >
             <button type="submit" className="btn btn-danger delete-button">

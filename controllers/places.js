@@ -50,17 +50,33 @@ router.get('/:id', (req, res) => {
 
 //EDIT
 router.put("/:id", (req, res) => {
-  res.send("PUT /places/:id stub");
+  db.Place.findByIdAndUpdate(req.params.id, req.body, {new:true})
+    .then(() => {
+      res.redirect(`/places/${req.params.id}`)
+    })
+  // res.send("PUT /places/:id stub");
 });
 
+
 router.get("/:id/edit", (req, res) => {
-  res.send("GET edit form stub");
+  db.Place.findById(req.params.id)
+  .then(place => {
+    console.log(place)
+    res.render('places/edit', {place})
+  })
+
+  // res.send("GET edit form stub");
 });
 
 
 //DELETE
 router.delete("/:id", (req, res) => {
-  res.send("DELETE /places/:id stub");
+  db.Place.findByIdAndDelete(req.params.id)
+  .then(() => {
+    res.redirect("/places")
+  } )
+
+  // res.send("DELETE /places/:id stub");
 });
 
 
