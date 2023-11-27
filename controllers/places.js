@@ -1,92 +1,119 @@
 const router = require("express").Router();
 const db = require("../models");
 
-//INDEX
-router.get('/', (req, res) => {
-    db.Place.find()
-        .then((places) => {
-            res.render('places/index', { places })
-        })
-        .catch(err => {
-            console.log('err', err)
-            res.render('error404')
-        })
-})
+
+//INDEX (view all places)
+
+router.get("/", (req, res) => {
+  db.Place.find()
+    .then((places) => {
+      res.render("places/index", { places });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("error404");
+    });
+});
 
 
-//NEW
-router.post('/', (req, res) => {
-    db.Place.create(req.body)
+
+//CREATE (post new place to db)
+
+router.post("/", (req, res) => {
+  db.Place.create(req.body)
     .then(() => {
-        res.redirect('/places')
+      res.redirect("/places");
     })
-    .catch(err => {
-        console.log('err', err)
-        res.render('error404')
-    })
-  })
-    
+    .catch((err) => {
+      console.log("err", err);
+      res.render("error404");
+    });
+});
+
+
+
+//NEW (view form to create new place)
+
 router.get("/new", (req, res) => {
-  res.render("places/new");
-});
-
-
-//SHOW
-router.get('/:id', (req, res) => {
-    db.Place.findById(req.params.id)
-    .then(place => {
-        res.render('places/show', { place })
-    })
-    .catch(err => {
-        console.log('err', err)
-        res.render('error404')
-    })
+  res.render("places/new")
 })
 
-//NOTE: CANVAS ACTIVITY INSTRUCTIONS FOR REST-RANT PART 8 DON'T INCLUDE HOW TO CODE THE //EDIT AND //DELETE ROUTES;
-
-//STUDENTS CAN USE THE INSTRUCTIONS FOR THE BREADCRUD HELPER METHODS PART 1 ACTIVITY JUST BEFORE IT AS A GUIDE
 
 
-//EDIT
-router.put("/:id", (req, res) => {
-  db.Place.findByIdAndUpdate(req.params.id, req.body, {new:true})
-    .then(() => {
-      res.redirect(`/places/${req.params.id}`)
-    })
-  // res.send("PUT /places/:id stub");
-});
+//SHOW (view one place)
 
-
-router.get("/:id/edit", (req, res) => {
+router.get("/:id", (req, res) => {
   db.Place.findById(req.params.id)
-  .then(place => {
-    console.log(place)
-    res.render('places/edit', {place})
-  })
-
-  // res.send("GET edit form stub");
+    .then((place) => {
+      res.render("places/show", { place });
+    })
+    .catch((err) => {
+      console.log("err", err);
+      res.render("error404");
+    });
 });
 
 
-//DELETE
-router.delete("/:id", (req, res) => {
-  db.Place.findByIdAndDelete(req.params.id)
-  .then(() => {
-    res.redirect("/places")
-  } )
 
-  // res.send("DELETE /places/:id stub");
+//UPDATE (update place in db)
+
+router.put("/:id", (req, res) => {
+  console.log(req.params.id);
+  db.Place.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then(
+      () => {
+        res.redirect(`/places/${req.params.id}`);
+      })
+    .catch((err) => {
+      console.log("err", err);
+      res.render("error404");
+    });
 });
 
+
+
+//EDIT (view form to edit place)
+
+router
+  .get("/:id/edit", (req, res) => {
+    db.Place.findById(req.params.id)
+      .then((place) => {
+        res.render("places/edit", { place });
+      })
+      .catch((err) => {
+        console.log("err", err);
+        res.render("error404");
+      });
+  });
+
+
+//DELETE (delete place from db)
+router
+  .delete("/:id", (req, res) => {
+    db.Place.
+      findByIdAndDelete(req.params.id)
+      .then(() => {
+        res.redirect("/places");
+      })
+      .catch((err) => {
+        console.log("err", err);
+        res.render("error404");
+      });
+  });
+
+
+
+//FOR AFTER PART 8
 
 //RANTS
-router.post("/:id/rant", (req, res) => {
-  res.send("GET /places/:id/rant stub");
-});
 
-router.delete("/:id/rant/:rantId", (req, res) => {
-  res.send("GET /places/:id/rant/:rantId stub");
-});
+// router.post('/:id/rant', (req, res) => {
+//   res.send('GET /places/:id/rant stub')
+// })
+
+// router.delete('/:id/rant/:rantId', (req, res) => {
+//     res.send('GET /places/:id/rant/:rantId stub')
+// })
+
 
 module.exports = router;
