@@ -1,0 +1,10 @@
+
+
+With this activity, your team must have one member 
+showing their screen and the other two members actively discussing each of the questions 
+in each file.
+
+When the process is finished with one student, go to the next student until all code is fixed
+and questions answered. Copy each other's answers into your own code.
+
+You'll need to make your own repo for it if you'd like to store it on Github.
