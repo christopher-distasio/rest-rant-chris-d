@@ -28,8 +28,8 @@ router.post("/", (req, res) => {
 //
 // 4  Why would a user want this functionality?
 //
-// 5  Which views are involved in this route? Describe what each of these views shows the user and its purpose. 
-  
+// 5  Trace the flow of views from what this route renders back to home page at
+// http://localhost:3000/
  
   
 // You don’t have to explain everything in technical terms, but you do need to be able to explain what's going on in the code

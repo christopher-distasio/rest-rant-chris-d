@@ -15,7 +15,10 @@ router.get("/", (req, res) => {
     });
 });
 
+function name () {
 
+
+}
 
 //CREATE (post new place to db)
 
