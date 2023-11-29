@@ -29,10 +29,14 @@ function show(props) {
             <h2>Rated</h2>
             <p>Not Rated</p>
             <h2>Description</h2>
-            <p>
-              Located {props.place.city}, {props.place.state}, and serving{" "}
-              {props.place.cuisines}
-            </p>
+            <h2>
+              {props.place.showEstablished()}
+            </h2>
+
+            <h3>
+              Serving {props.place.cuisines}
+            </h3>
+
           </div>
         </div>
         <br/><br/><br/>
