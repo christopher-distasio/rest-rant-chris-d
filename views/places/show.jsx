@@ -15,10 +15,12 @@ function show(data) {
             <h2>Rated</h2>
             <p>Not Rated</p>
             <h2>Description</h2>
-            <p>
-              Located {data.place.city}, {data.place.state}, and serving{" "}
-              {data.place.cuisines}
-            </p>
+            <h3>
+              {data.place.showEstablished()}
+            </h3>
+            <h4>
+              Serving {data.place.cuisines}
+            </h4>
           </div>
         </div>
         <br/><br/><br/>
