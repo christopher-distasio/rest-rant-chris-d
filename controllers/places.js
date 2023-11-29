@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const db = require("../models");
-
+const db = require("../models/");
 
 //INDEX (view all places)
 
@@ -15,24 +14,29 @@ router.get("/", (req, res) => {
     });
 });
 
-function name () {
 
-
-}
 
 //CREATE (post new place to db)
 
-router.post("/", (req, res) => {
+//NEW
+router.post('/', (req, res) => {
+  if (req.body.pic === '') { req.body.pic = undefined }
+  if (req.body.city === '') { req.body.city = undefined }
+  if (req.body.state === '') { req.body.state = undefined }
   db.Place.create(req.body)
-    .then(() => {
-      res.redirect("/places");
-    })
-    .catch((err) => {
-      console.log("err", err);
-      res.render("error404");
-    });
-});
-
+      .then(() => {
+          res.redirect('/places')
+      })
+      .catch(err => {
+          if (err && err.name == 'ValidationError') {
+              let message = 'Validation Error: '
+              res.render('places/new', { message })
+          }
+          else {
+              res.render('error404')
+          }
+      })
+}) 
 
 
 //NEW (view form to create new place)
