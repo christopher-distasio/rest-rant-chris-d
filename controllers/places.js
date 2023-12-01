@@ -17,7 +17,6 @@ router.get("/", (req, res) => {
 
 //CREATE (post new place to db)
 
-//NEW
 router.post("/", (req, res) => {
   if (req.body.pic === "") {
     req.body.pic = undefined;
@@ -57,17 +56,18 @@ router.get("/new", (req, res) => {
 
 //SHOW (view one place)
 
-router.get("/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   db.Place.findById(req.params.id)
-    .then((place) => {
-      res.render("places/show", { place });
-    })
-    .catch((err) => {
-      console.log("err", err);
-      res.render("error404");
-    });
-});
-
+  .populate('comments')
+  .then(place => {
+      console.log(place.comments)
+      res.render('places/show', { place })
+  })
+  .catch(err => {
+      console.log('err', err)
+      res.render('error404')
+  })
+})
 
 
 //UPDATE (update place in db)
@@ -98,8 +98,6 @@ router.get("/:id/edit", (req, res) => {
       res.render("error404");
     });
 });
-
-
 
 //DELETE (delete place from db)
 router.delete("/:id", (req, res) => {

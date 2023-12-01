@@ -14,8 +14,84 @@ const Def = require("../default");
 //super object that contains all the data that is passed into a function. For example, you could use the word data, or
 //superObject, or even "fluffy", but you just shouldn't :)
 
+function show (props) {
+  console.log(props)
+  let comments = (
+    <h3 className="inactive">
+      No comments yet!
+    </h3>
+  )
+if (props.place.comments.length) {
+    comments = props.place.comments.map(c => {
+      return (
+        <div className="border">
+          <h2 className="rant">{c.rant ? 'Rant! ðŸ˜¡' : 'Rave! ðŸ˜»'}</h2>
+          <h4>{c.content}</h4>
+          <h3>
+            <strong>- {c.author}</strong>
+          </h3>
+          <h4>Rating: {c.stars}</h4>
+        </div>
+      )
+    })
+  }
+  return (
+      <Def>
+        <main>
+          <div className="row">
+            <div className="col-sm-6">
+              <img id="show-image" src={props.place.pic} alt={props.place.name} />
+            </div>
+            <div className="col-sm-6">
+              <h1>{props.place.name}</h1>
+              <h2>Rated</h2>
+              <p>Not Rated</p>
+              <h2>Description</h2>
+              <h2>
+                {props.place.showEstablished()}
+              </h2>
 
-function show(props) {
+              <h3>
+                Serving {props.place.cuisines}
+              </h3>
+
+          </div>
+          <hr />
+          <h2>Comments</h2>
+          {comments}
+          </div>
+        </main>
+      </Def>
+  )
+}
+
+module.exports = show
+
+
+// function show (data) {
+//   let comments = (
+//     <h3 className="inactive">
+//       No comments yet!
+//     </h3>
+//   )
+//   return (
+//       <Def>
+//         <main>
+//           <div className="row">
+//             ...
+//           </div>
+//           <hr />
+//           <h2>Comments</h2>
+//           {comments}
+//         </main>
+//       </Def>
+//   )
+// }
+
+// module.exports = show
+
+
+{/* function show(props) {
   return (
     <Def>
       <main>
@@ -41,8 +117,6 @@ function show(props) {
         </div>
         <br/><br/><br/>
         <div className="row">
-          <h2>Comments</h2>
-          <p>no comments yet!</p>
         </div>
         <br/><br/>
         <div className="row">
@@ -67,4 +141,4 @@ function show(props) {
   );
 }
 
-module.exports = show;
+module.exports = show; */}
