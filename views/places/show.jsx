@@ -60,6 +60,55 @@ if (props.place.comments.length) {
           <h2>Comments</h2>
           {comments}
           </div>
+
+        {/* Stub for new comment form from GH CoPilot to be coded for adding a new comment form to the show page.
+        Then remember to look over this form and send this prompt to read over and make sure you understand
+        what's going on.
+ */}
+          {/* <form action="/your-stub-route" method="POST">
+          <div className="form-group">
+            <label htmlFor="author">Author</label>
+            <input type="text" id="author" name="author" className="form-control" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="content">Content</label>
+            <textarea id="content" name="content" className="form-control"></textarea>
+          </div>
+          <div className="form-group">
+            <label htmlFor="starRating">Star Rating</label>
+            <input type="number" id="starRating" name="starRating" step="0.5" className="form-control" />
+          </div>
+          <div className="form-group form-check">
+            <input type="checkbox" id="rant" name="rant" className="form-check-input" />
+            <label className="form-check-label" htmlFor="rant">Rant</label>
+          </div>
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </form> */}
+
+          <h2>Got Your Own Rant or Rave?</h2>
+            <form action={`/places/${props.place.id}/comment`} method="POST">
+              <div className="row">
+                <div className="form-group col-sm-12">
+                  <label htmlFor="content">Content</label>
+                  <textarea id="content" name="content" className="form-control"></textarea>
+                </div>
+              </div>
+              <div className="row">
+                <div className="form-group col-sm-4">
+                  <label htmlFor="author">Author</label>
+                  <input id="author" name="author" className="form-control" />
+                </div>
+                <div className="form-group col-sm-4">
+                  <label htmlFor="stars">Star Rating</label>
+                  <input type="range" step="0.5" min="1" max="5" id="stars" name="stars" className="form-control" />
+                </div>
+                <div className="form-group col-sm-2">
+                  <label htmlFor="rant">Rant?</label>
+                  <input type="checkbox" id="rant" name="rant" className="form-control" />
+                </div>
+              </div>
+              <input type="submit" className="btn btn-primary" value="Add Comment" />
+            </form>
         </main>
       </Def>
   )
