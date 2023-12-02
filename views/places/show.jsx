@@ -65,7 +65,7 @@ if (props.place.comments.length) {
         Then remember to look over this form and send this prompt to read over and make sure you understand
         what's going on.
  */}
-          {/* <form action="/your-stub-route" method="POST">
+          {/* <form action={`/places/${props.place.id}/comment`} method="POST">
           <div className="form-group">
             <label htmlFor="author">Author</label>
             <input type="text" id="author" name="author" className="form-control" />
@@ -83,8 +83,8 @@ if (props.place.comments.length) {
             <label className="form-check-label" htmlFor="rant">Rant</label>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
-        </form> */}
-
+        </form>
+ */}
           <h2>Got Your Own Rant or Rave?</h2>
             <form action={`/places/${props.place.id}/comment`} method="POST">
               <div className="row">
@@ -115,79 +115,3 @@ if (props.place.comments.length) {
 }
 
 module.exports = show
-
-
-// function show (data) {
-//   let comments = (
-//     <h3 className="inactive">
-//       No comments yet!
-//     </h3>
-//   )
-//   return (
-//       <Def>
-//         <main>
-//           <div className="row">
-//             ...
-//           </div>
-//           <hr />
-//           <h2>Comments</h2>
-//           {comments}
-//         </main>
-//       </Def>
-//   )
-// }
-
-// module.exports = show
-
-
-{/* function show(props) {
-  return (
-    <Def>
-      <main>
-        <br/><br/>
-        <div className="row">
-          <div className="col-sm-6">
-            <img id="show-image" src={props.place.pic} alt={props.place.name} />
-          </div>
-          <div className="col-sm-6">
-            <h1>{props.place.name}</h1>
-            <h2>Rated</h2>
-            <p>Not Rated</p>
-            <h2>Description</h2>
-            <h2>
-              {props.place.showEstablished()}
-            </h2>
-
-            <h3>
-              Serving {props.place.cuisines}
-            </h3>
-
-          </div>
-        </div>
-        <br/><br/><br/>
-        <div className="row">
-        </div>
-        <br/><br/>
-        <div className="row">
-          <a className="col-sm-1 edit-button"
-            href={`/places/${props.place.id}/edit`}
-          >
-            Edit
-          </a>
-          <form
-            method="POST"
-            action={`/places/${props.place.id}?_method=DELETE`}
-            className="col-sm-1 delete-form"
-          >
-            <button type="submit" className="btn btn-danger delete-button">
-              Delete
-            </button>
-          </form>
-        </div>
-        <br/>
-      </main>
-    </Def>
-  );
-}
-
-module.exports = show; */}
