@@ -21,8 +21,24 @@ function show(data) {
     let sumRatings = data.place.comments.reduce((tot, c) => {
       return tot + c.stars;
     }, 0);
-    let avgRating = sumRatings / data.place.comments.length;
-    rating = <h3>{Math.round(avgRating)} stars</h3>;
+    let averageRating = Math.round(sumRatings / data.place.comments.length);
+    let stars = "";
+    for (let i = 0; i < averageRating; i++) {
+      stars += "⭐️";
+    }
+    rating = <h3>{stars}</h3>;
+    if (data.place.comments.length) {
+      let sumRatings = data.place.comments.reduce((tot, c) => {
+        return tot + c.stars;
+      }, 0);
+      let averageRating = Math.round(sumRatings / data.place.comments.length);
+      let stars = "";
+      for (let i = 0; i < averageRating; i++) {
+        stars += "⭐️";
+      }
+      rating = <h3>{stars}</h3>;
+    }
+
     comments = data.place.comments.map((c) => {
       return (
         <div className="border col-sm-4">
@@ -32,10 +48,18 @@ function show(data) {
             <strong>- {c.author}</strong>
           </h3>
           <h4>Rating: {c.stars}</h4>
-          <form method="POST" action={`/places/${data.place.id}/comment/${c.id}?_method=DELETE`}>
-              <input type="submit" className="btn btn-danger" value="Delete Comment" />
-            </form>
-          </div>      );
+          <form
+            method="POST"
+            action={`/places/${data.place.id}/comment/${c.id}?_method=DELETE`}
+          >
+            <input
+              type="submit"
+              className="btn btn-danger"
+              value="Delete Comment"
+            />
+          </form>
+        </div>
+      );
     });
   }
   return (
@@ -56,26 +80,27 @@ function show(data) {
             <h3>Serving {data.place.cuisines}</h3>
           </div>
           <div className="row">
-          <a className="col-sm-1 edit-button"
-            href={`/places/${data.place.id}/edit`}
-          >
-            Edit
-          </a>
-          <form
-            method="POST"
-            action={`/places/${data.place.id}?_method=DELETE`}
-            className="col-sm-1 delete-form"
-          >
-            <button type="submit" className="btn btn-danger delete-button">
-              Delete
-            </button>
-          </form>
-        </div>
-        <br/><br/>
+            <a
+              className="col-sm-1 edit-button"
+              href={`/places/${data.place.id}/edit`}
+            >
+              Edit
+            </a>
+            <form
+              method="POST"
+              action={`/places/${data.place.id}?_method=DELETE`}
+              className="col-sm-1 delete-form"
+            >
+              <button type="submit" className="btn btn-danger delete-button">
+                Delete
+              </button>
+            </form>
+          </div>
+          <br />
+          <br />
           <hr />
           <h2>Comments</h2>
           {comments}
-
         </div>
 
         <h2>Got Your Own Rant or Rave?</h2>
@@ -129,10 +154,6 @@ function show(data) {
 }
 
 module.exports = show;
-
-
-
-
 
 {
   /* Stub for new comment form from GH CoPilot to be coded for adding a new comment form to the show page.
